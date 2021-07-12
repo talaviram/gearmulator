@@ -43,6 +43,10 @@ PRIVATE
 juce_add_binary_data(jucePlugin_BinaryData
     SOURCES
         "assets/bg_1377x800.png"
+        "assets/buttons/GLOBAL_btn_arp_settings_141x26.png"
+        "assets/buttons/GLOBAL_btn_effects_141x26.png"
+        "assets/buttons/GLOBAL_btn_lfo_matrix_141x26.png"
+        "assets/buttons/GLOBAL_btn_osc_filter_141x26.png"
 )
 
 target_compile_definitions(jucePlugin 
