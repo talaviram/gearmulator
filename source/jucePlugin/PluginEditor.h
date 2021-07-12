@@ -23,5 +23,8 @@ private:
 	juce::TextButton m_btSingleMode;
 	juce::TextButton m_btMultiMode;
 	
+    juce::TextButton m_openEditor; // temporary until integrated - will be rebased!
+    std::unique_ptr<juce::ResizableWindow> m_virusEditor;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)
 };

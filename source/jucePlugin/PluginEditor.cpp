@@ -1,5 +1,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "ui/VirusEditor.h"
 
 #include "version.h"
 
@@ -33,6 +34,17 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
 	{
 		switchPlayMode(2);
 	};
+
+    m_openEditor.setButtonText ("Show Editor");
+    m_openEditor.onClick = [this]() {
+        m_virusEditor.reset (new juce::ResizableWindow ("VirusEditor", true));
+        m_virusEditor->setTopLeftPosition (0, 0);
+        m_virusEditor->setUsingNativeTitleBar (true);
+        m_virusEditor->setVisible (true);
+        m_virusEditor->setResizable(true, false);
+        m_virusEditor->setContentOwned (new VirusEditor(), true);
+    };
+    addAndMakeVisible (m_openEditor);
 }
 
 AudioPluginAudioProcessorEditor::~AudioPluginAudioProcessorEditor()
@@ -61,6 +73,7 @@ void AudioPluginAudioProcessorEditor::resized()
 {
 	// This is generally where you'll want to lay out the positions of any
 	// subcomponents in your editor..
+    m_openEditor.setBounds (0,0, 80, 20);
 }
 
 void AudioPluginAudioProcessorEditor::switchPlayMode(uint8_t _playMode) const
@@ -68,4 +81,6 @@ void AudioPluginAudioProcessorEditor::switchPlayMode(uint8_t _playMode) const
 	synthLib::SMidiEvent ev;
 	ev.sysex = { 0xf0, 0x00, 0x20, 0x33, 0x01, 0x00, 0x72, 0x0, 0x7a, _playMode, 0xf7};
 	processorRef.addMidiEvent(ev);
+    // This is generally where you'll want to lay out the positions of any
+    // subcomponents in your editor..
 }
