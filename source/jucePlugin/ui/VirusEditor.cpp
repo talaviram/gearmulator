@@ -1,6 +1,11 @@
 #include "VirusEditor.h"
 #include "BinaryData.h"
 
+#include "Virus_ArpEditor.h"
+#include "Virus_FxEditor.h"
+#include "Virus_LfoEditor.h"
+#include "Virus_OscEditor.h"
+
 using namespace juce;
 
 constexpr auto kPanelWidth = 1377;
@@ -14,13 +19,38 @@ VirusEditor::VirusEditor()
     addAndMakeVisible (*m_background);
     addAndMakeVisible (m_mainButtons);
 
+    m_arpEditor = std::make_unique<ArpEditor>();
+    m_fxEditor = std::make_unique<FxEditor>();
+    m_lfoEditor = std::make_unique<LfoEditor>();
+    m_oscEditor = std::make_unique<OscEditor>();
+
+    applyToSections([this](Component *s) { addChildComponent(s); });
+
+    // show/hide section from buttons..
+    m_mainButtons.updateSection = [this]() {
+        m_arpEditor->setVisible(m_mainButtons.m_arpSettings.getToggleState());
+        m_fxEditor->setVisible(m_mainButtons.m_effects.getToggleState());
+        m_lfoEditor->setVisible(m_mainButtons.m_lfoMatrix.getToggleState());
+        m_oscEditor->setVisible(m_mainButtons.m_oscFilter.getToggleState());
+    };
+
     setSize (kPanelWidth, kPanelHeight);
+}
+
+void VirusEditor::applyToSections(std::function<void(Component *)> action)
+{
+    for (auto *section : {static_cast<Component *>(m_arpEditor.get()), static_cast<Component *>(m_fxEditor.get()),
+                          static_cast<Component *>(m_lfoEditor.get()), static_cast<Component *>(m_oscEditor.get())})
+    {
+        action(section);
+    }
 }
 
 void VirusEditor::resized()
 {
     m_background->setBounds (getLocalBounds());
     m_mainButtons.setBounds (394, 106, m_mainButtons.getWidth(), m_mainButtons.getHeight());
+    applyToSections([this](Component *s) { s->setTopLeftPosition(338, 133); });
 }
 
 VirusEditor::MainButtons::MainButtons()
@@ -37,6 +67,8 @@ VirusEditor::MainButtons::MainButtons()
     setSize ((kButtonWidth + kMargin) * numOfMainButtons, kButtonHeight);
 }
 
+void VirusEditor::MainButtons::valueChanged(juce::Value &) { updateSection(); }
+
 void VirusEditor::MainButtons::setupButton (int i, std::unique_ptr<Drawable>&& btnImage, juce::DrawableButton& btn)
 {
     auto onImage = btnImage->createCopy();
@@ -45,5 +77,6 @@ void VirusEditor::MainButtons::setupButton (int i, std::unique_ptr<Drawable>&& b
     btn.setRadioGroupId (kGroupId);
     btn.setImages (btnImage.get(), nullptr, nullptr, nullptr, onImage.get());
     btn.setBounds ((i > 1 ? -1 : 0) + i * (kButtonWidth + kMargin), 0, kButtonWidth, kButtonHeight);
+    btn.getToggleStateValue().addListener(this);
     addAndMakeVisible (btn);
 }
