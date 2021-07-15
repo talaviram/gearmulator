@@ -13,6 +13,8 @@ constexpr auto kPanelHeight = 800;
 
 VirusEditor::VirusEditor()
 {
+    setLookAndFeel(&m_lookAndFeel);
+
     m_background = Drawable::createFromImageData (BinaryData::bg_1377x800_png, BinaryData::bg_1377x800_pngSize);
 
     m_background->setBufferedToImage (true);
@@ -36,6 +38,8 @@ VirusEditor::VirusEditor()
 
     setSize (kPanelWidth, kPanelHeight);
 }
+
+VirusEditor::~VirusEditor() { setLookAndFeel(nullptr); }
 
 void VirusEditor::applyToSections(std::function<void(Component *)> action)
 {

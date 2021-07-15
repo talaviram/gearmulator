@@ -1,6 +1,7 @@
 #pragma once
 
 #include <juce_gui_extra/juce_gui_extra.h>
+#include "Virus_LookAndFeel.h"
 
 class OscEditor;
 class LfoEditor;
@@ -11,6 +12,7 @@ class VirusEditor : public juce::Component
 {
 public:
     VirusEditor();
+    ~VirusEditor();
     void resized() override;
 
 private:
@@ -36,4 +38,6 @@ private:
     std::unique_ptr<ArpEditor> m_arpEditor;
 
     std::unique_ptr<juce::Drawable> m_background;
+
+    Virus::LookAndFeel m_lookAndFeel;
 };
