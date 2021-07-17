@@ -25,6 +25,8 @@ LfoEditor::LfoBase::LfoBase()
 {
     for (auto *s : {&m_rate, &m_keytrack, &m_amount})
         setupRotary(*this, *s);
+    addAndMakeVisible(m_subWaveform);
+    m_subWaveform.setBounds(8, 123, Buttons::HandleButton::kWidth, Buttons::HandleButton::kHeight);
 }
 
 LfoEditor::LfoTwoOneShared::LfoTwoOneShared()

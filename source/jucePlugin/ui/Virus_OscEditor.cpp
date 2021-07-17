@@ -102,6 +102,8 @@ OscEditor::Sub::Sub()
     setupRotary(*this, m_level);
     m_level.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_RED);
     m_level.setBounds(14 + knobSize, 20, knobSize, knobSize);
+    m_subWaveform.setBounds(30, 34, Buttons::HandleButton::kWidth, Buttons::HandleButton::kHeight);
+    addAndMakeVisible(m_subWaveform);
 }
 
 OscEditor::Portamento::Portamento()

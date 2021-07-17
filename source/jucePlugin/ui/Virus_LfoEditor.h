@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../PluginProcessor.h"
+#include "Virus_Buttons.h"
 
 class LfoEditor : public juce::Component
 {
@@ -14,6 +15,7 @@ private:
         juce::Slider m_rate;
         juce::Slider m_keytrack;
         juce::Slider m_amount;
+        Buttons::HandleButton m_subWaveform;
     };
 
     struct LfoTwoOneShared : LfoBase

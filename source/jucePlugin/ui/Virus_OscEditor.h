@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../PluginProcessor.h"
+#include "Virus_Buttons.h"
 
 class OscEditor : public juce::Component
 {
@@ -61,6 +62,7 @@ private:
     {
         Sub();
         juce::Slider m_level;
+        Buttons::HandleButton m_subWaveform;
     } m_sub;
 
     struct Portamento : juce::Component

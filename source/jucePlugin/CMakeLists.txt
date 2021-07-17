@@ -31,6 +31,7 @@ target_sources(jucePlugin
 PRIVATE
     PluginEditor.cpp
     PluginProcessor.cpp
+    ui/Virus_Buttons.cpp
     ui/Virus_LookAndFeel.cpp
     ui/VirusEditor.cpp
     ui/Virus_ArpEditor.cpp
@@ -39,6 +40,7 @@ PRIVATE
     ui/Virus_OscEditor.cpp
     PluginEditor.h
     PluginProcessor.h
+    ui/Virus_Buttons.h
     ui/Virus_LookAndFeel.h
     ui/VirusEditor.h
     ui/Virus_ArpEditor.h
@@ -62,6 +64,7 @@ juce_add_binary_data(jucePlugin_BinaryData
         "assets/buttons/GLOBAL_btn_effects_141x26.png"
         "assets/buttons/GLOBAL_btn_lfo_matrix_141x26.png"
         "assets/buttons/GLOBAL_btn_osc_filter_141x26.png"
+        "assets/buttons/Handle_18x47.png"
         "assets/knobs/Gen_70x70_100.png"
         "assets/knobs/Gen_pol_70x70_100.png"
         "assets/knobs/GenBlue_70x70_100.png"
