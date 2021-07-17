@@ -38,6 +38,8 @@ LfoEditor::LfoTwoOneShared::LfoTwoOneShared()
     m_contour.setBounds(m_rate.getBounds().translated(0, knobSize + 14));
     m_phase.setBounds(m_keytrack.getBounds().translated(0, knobSize + 14));
     m_amount.setBounds(307, knobSize + 28, knobSize, knobSize);
+    addAndMakeVisible(m_envMode);
+    m_envMode.setBounds(66, 122, Buttons::LfoButton::kWidth, Buttons::LfoButton::kHeight);
 }
 
 LfoEditor::LfoOne::LfoOne()

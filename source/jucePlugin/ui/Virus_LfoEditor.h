@@ -23,6 +23,7 @@ private:
         LfoTwoOneShared();
         juce::Slider m_contour;
         juce::Slider m_phase;
+        Buttons::LfoButton m_envMode;
     };
 
     struct LfoOne : LfoTwoOneShared
