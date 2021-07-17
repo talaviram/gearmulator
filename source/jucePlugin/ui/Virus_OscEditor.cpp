@@ -121,6 +121,11 @@ OscEditor::Filters::Filters()
     setupRotary(*this, m_filterBalance);
     m_filterBalance.setBounds(132, 137, knobSize, knobSize);
     addAndMakeVisible(m_filterBalance);
+
+    m_envPol[0].setBounds(317, 179, 27, 33);
+    m_envPol[1].setBounds(m_envPol[0].getBounds().translated(48, 0));
+    addAndMakeVisible(m_envPol[0]);
+    addAndMakeVisible(m_envPol[1]);
 }
 
 OscEditor::Filters::Filter::Filter()

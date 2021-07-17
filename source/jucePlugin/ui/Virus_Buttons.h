@@ -19,4 +19,14 @@ namespace Buttons
         static constexpr auto kWidth = 23;
         static constexpr auto kHeight = 19;
     };
+
+    class EnvPol : public juce::Component
+    {
+    public:
+        EnvPol();
+
+    private:
+        juce::DrawableButton m_pos;
+        juce::DrawableButton m_neg;
+    };
 } // namespace Buttons
