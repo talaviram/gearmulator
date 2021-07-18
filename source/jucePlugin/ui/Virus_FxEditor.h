@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../PluginProcessor.h"
+#include "Virus_Buttons.h"
 
 class FxEditor : public juce::Component
 {
@@ -92,6 +93,7 @@ private:
         juce::Slider m_bands;
         juce::Slider m_attack;
         juce::Slider m_release;
+        Buttons::LinkButton m_link;
 
         struct Carrier : juce::Component
         {

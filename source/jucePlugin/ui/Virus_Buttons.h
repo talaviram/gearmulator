@@ -29,4 +29,10 @@ namespace Buttons
         juce::DrawableButton m_pos;
         juce::DrawableButton m_neg;
     };
+
+    class LinkButton : public juce::DrawableButton
+    {
+    public:
+        LinkButton(bool isVert);
+    };
 } // namespace Buttons

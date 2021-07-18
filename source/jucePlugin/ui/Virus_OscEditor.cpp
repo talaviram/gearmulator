@@ -112,7 +112,7 @@ OscEditor::Portamento::Portamento()
     m_portamento.setBounds(12, 18, knobSize, knobSize);
 }
 
-OscEditor::Filters::Filters()
+OscEditor::Filters::Filters() : m_link1(true), m_link2(true)
 {
     addAndMakeVisible(m_filter[0]);
     addAndMakeVisible(m_filter[1]);
@@ -126,6 +126,11 @@ OscEditor::Filters::Filters()
     m_envPol[1].setBounds(m_envPol[0].getBounds().translated(48, 0));
     addAndMakeVisible(m_envPol[0]);
     addAndMakeVisible(m_envPol[1]);
+
+    addAndMakeVisible(m_link1);
+    m_link1.setBounds(7, 143, 12, 36);
+    addAndMakeVisible(m_link2);
+    m_link2.setBounds(m_link1.getBounds().withX(426));
 }
 
 OscEditor::Filters::Filter::Filter()

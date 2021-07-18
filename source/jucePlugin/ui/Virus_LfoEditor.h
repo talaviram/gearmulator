@@ -24,6 +24,7 @@ private:
         juce::Slider m_contour;
         juce::Slider m_phase;
         Buttons::LfoButton m_envMode;
+        Buttons::LinkButton m_link;
     };
 
     struct LfoOne : LfoTwoOneShared

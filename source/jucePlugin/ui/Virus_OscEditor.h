@@ -86,6 +86,7 @@ private:
         } m_filter[2];
         juce::Slider m_filterBalance;
         Buttons::EnvPol m_envPol[2];
+        Buttons::LinkButton m_link1, m_link2;
     } m_filters;
 
     struct Envelope : juce::Component

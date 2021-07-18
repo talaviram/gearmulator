@@ -54,4 +54,20 @@ namespace Buttons
         m_neg.setImages(neg_off.get(), nullptr, neg_on.get(), nullptr, neg_on.get(), nullptr, nullptr, neg_off.get());
         m_neg.setBounds(1, 18, 25, 13);
     }
+
+    Buttons::LinkButton::LinkButton(bool isVert) : DrawableButton("LinkButton", DrawableButton::ImageRaw)
+    {
+        auto off = Drawable::createFromImageData(
+            isVert ? BinaryData::link_vert_12x36_png : BinaryData::link_horizon_36x12_png,
+            isVert ? BinaryData::link_vert_12x36_pngSize : BinaryData::link_horizon_36x12_pngSize);
+        auto on = off->createCopy();
+        setColour(DrawableButton::ColourIds::backgroundColourId, Colours::transparentBlack);
+        setColour(DrawableButton::ColourIds::backgroundOnColourId, Colours::transparentBlack);
+        setClickingTogglesState(true);
+        if (isVert)
+            on->setOriginWithOriginalSize({-12, 0});
+        else
+            on->setOriginWithOriginalSize({0, -12});
+        setImages(off.get(), nullptr, on.get(), nullptr, on.get());
+    }
 }; // namespace Buttons

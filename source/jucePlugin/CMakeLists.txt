@@ -66,6 +66,8 @@ juce_add_binary_data(jucePlugin_BinaryData
         "assets/buttons/GLOBAL_btn_osc_filter_141x26.png"
         "assets/buttons/env_pol_50x34.png"
         "assets/buttons/lfo_btn_23_19.png"
+        "assets/buttons/link_vert_12x36.png"
+        "assets/buttons/link_horizon_36x12.png"
         "assets/buttons/Handle_18x47.png"
         "assets/knobs/Gen_70x70_100.png"
         "assets/knobs/Gen_pol_70x70_100.png"

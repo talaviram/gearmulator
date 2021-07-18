@@ -122,7 +122,7 @@ FxEditor::DelayAndReverb::Sync::Sync()
     m_mix.setBounds(376, -2, knobSize, knobSize);
 }
 
-FxEditor::Vocoder::Vocoder()
+FxEditor::Vocoder::Vocoder() : m_link(true)
 {
     constexpr auto y = 17;
     for (auto *s : {&m_sourceBalance, &m_spectralBalance, &m_bands, &m_attack, &m_release})
@@ -137,6 +137,9 @@ FxEditor::Vocoder::Vocoder()
     addAndMakeVisible(m_carrier);
     m_modulator.setBounds(10, 218, 423, 81);
     addAndMakeVisible(m_modulator);
+
+    addAndMakeVisible(m_link);
+    m_link.setBounds(445, 195, 12, 36);
 }
 
 FxEditor::Vocoder::Carrier::Carrier()

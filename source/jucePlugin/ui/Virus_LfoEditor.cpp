@@ -29,7 +29,7 @@ LfoEditor::LfoBase::LfoBase()
     m_subWaveform.setBounds(8, 123, Buttons::HandleButton::kWidth, Buttons::HandleButton::kHeight);
 }
 
-LfoEditor::LfoTwoOneShared::LfoTwoOneShared()
+LfoEditor::LfoTwoOneShared::LfoTwoOneShared() : m_link(false)
 {
     for (auto *s : {&m_contour, &m_phase})
         setupRotary(*this, *s);
@@ -40,6 +40,8 @@ LfoEditor::LfoTwoOneShared::LfoTwoOneShared()
     m_amount.setBounds(307, knobSize + 28, knobSize, knobSize);
     addAndMakeVisible(m_envMode);
     m_envMode.setBounds(66, 122, Buttons::LfoButton::kWidth, Buttons::LfoButton::kHeight);
+
+    m_link.setBounds(293, 8, 36, 12);
 }
 
 LfoEditor::LfoOne::LfoOne()
@@ -51,6 +53,7 @@ LfoEditor::LfoOne::LfoOne()
     m_filterGain.setBounds(m_osc1Pitch.getBounds().withY(m_amount.getY()));
     m_pw12.setBounds(374, 14, knobSize, knobSize);
     m_reso12.setBounds(m_pw12.getBounds().translated(knobSize - 4, 0));
+    addAndMakeVisible(m_link); // add last to allow clicking over knobs area...
 }
 
 LfoEditor::LfoTwo::LfoTwo()
@@ -62,6 +65,7 @@ LfoEditor::LfoTwo::LfoTwo()
     m_panning.setBounds(m_f1cutoff.getBounds().withY(m_amount.getY()));
     m_shape12.setBounds(374, 14, knobSize, knobSize);
     m_fmAmount.setBounds(m_shape12.getBounds().translated(knobSize - 4, 0));
+    addAndMakeVisible(m_link); // add last to allow clicking over knobs area...
 }
 
 LfoEditor::LfoThree::LfoThree()
