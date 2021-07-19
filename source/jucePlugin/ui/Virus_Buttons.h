@@ -35,4 +35,12 @@ namespace Buttons
     public:
         LinkButton(bool isVert);
     };
+
+    class SyncButton : public juce::DrawableButton
+    {
+    public:
+        static constexpr auto kWidth = 54;
+        static constexpr auto kHeight = 25;
+        SyncButton();
+    };
 } // namespace Buttons

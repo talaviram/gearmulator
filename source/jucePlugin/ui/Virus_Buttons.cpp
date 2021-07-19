@@ -70,4 +70,15 @@ namespace Buttons
             on->setOriginWithOriginalSize({0, -12});
         setImages(off.get(), nullptr, on.get(), nullptr, on.get());
     }
+
+    Buttons::SyncButton::SyncButton() : DrawableButton("SyncButton", DrawableButton::ImageRaw)
+    {
+        auto off = Drawable::createFromImageData(BinaryData::sync2_54x25_png, BinaryData::sync2_54x25_pngSize);
+        auto on = off->createCopy();
+        setColour(DrawableButton::ColourIds::backgroundColourId, Colours::transparentBlack);
+        setColour(DrawableButton::ColourIds::backgroundOnColourId, Colours::transparentBlack);
+        setClickingTogglesState(true);
+        on->setOriginWithOriginalSize({0, -25});
+        setImages(off.get(), nullptr, on.get(), nullptr, on.get());
+    }
 }; // namespace Buttons

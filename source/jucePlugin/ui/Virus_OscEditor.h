@@ -107,5 +107,6 @@ private:
     {
     } m_ampEnv;
 
+    Buttons::SyncButton m_oscSync;
     std::unique_ptr<juce::Drawable> m_background;
 };

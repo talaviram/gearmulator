@@ -20,6 +20,7 @@ OscEditor::OscEditor()
     addAndMakeVisible(m_filters);
     addAndMakeVisible(m_filterEnv);
     addAndMakeVisible(m_ampEnv);
+    addAndMakeVisible(m_oscSync);
 }
 
 void OscEditor::resized()
@@ -35,6 +36,8 @@ void OscEditor::resized()
     m_filters.setBounds(m_mixer.getRight() + 2, m_mixer.getY(), 445, 334);
     m_filterEnv.setBounds(m_filters.getX(), m_filters.getBottom() + 2, m_filters.getWidth(), m_oscOne.getHeight());
     m_ampEnv.setBounds(m_filterEnv.getBounds().withY(m_filterEnv.getBounds().getBottom() + 2));
+    m_oscSync.setBounds(319, roundToInt(4 + m_oscOne.getBottom() - Buttons::SyncButton::kHeight * 0.5),
+                        Buttons::SyncButton::kWidth, Buttons::SyncButton::kHeight);
 }
 
 OscEditor::OscOne::OscOne()
