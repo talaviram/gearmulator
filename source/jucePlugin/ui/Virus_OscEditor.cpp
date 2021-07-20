@@ -4,6 +4,8 @@
 
 using namespace juce;
 
+constexpr auto comboBoxWidth = 84;
+
 OscEditor::OscEditor()
 {
     setupBackground(*this, m_background, BinaryData::bg_osc_1018x620_png, BinaryData::bg_osc_1018x620_pngSize);
@@ -48,6 +50,9 @@ OscEditor::OscOne::OscOne()
     m_pulseWidth.setBounds(m_shape.getBounds().translated(62, 0));
     m_semitone.setBounds(m_pulseWidth.getBounds().translated(63, 0));
     m_keyFollow.setBounds(m_semitone.getBounds().translated(66, 0));
+
+    addAndMakeVisible(m_waveSelect);
+    m_waveSelect.setBounds (18, 42, comboBoxWidth, comboBoxHeight);
 }
 
 OscEditor::OscTwo::OscTwo()
@@ -58,6 +63,8 @@ OscEditor::OscTwo::OscTwo()
     m_detune.setBounds(m_fmAmount.getBounds().translated(62, 0));
     m_envFm.setBounds(m_detune.getBounds().translated(63, 0));
     m_envOsc2.setBounds(m_envFm.getBounds().translated(66, 0));
+    addAndMakeVisible (m_fmMode);
+    m_fmMode.setBounds (18, 140, comboBoxWidth, comboBoxHeight);
 }
 
 OscEditor::OscThree::OscThree()
@@ -68,6 +75,8 @@ OscEditor::OscThree::OscThree()
     m_detune.setBounds(m_semitone.getBounds().translated(62, 0));
     m_level.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_RED);
     m_level.setBounds(m_detune.getBounds().translated(63, 0));
+    addAndMakeVisible (m_oscThreeMode);
+    m_oscThreeMode.setBounds (18, 43, comboBoxWidth, comboBoxHeight);
 }
 
 OscEditor::Unison::Unison()
@@ -78,6 +87,8 @@ OscEditor::Unison::Unison()
     m_panSpread.setBounds(m_detune.getBounds().translated(62, 0));
     m_lfoPhase.setBounds(m_panSpread.getBounds().translated(63, 0));
     m_phaseInit.setBounds(m_lfoPhase.getBounds().translated(66, 0));
+    addAndMakeVisible (m_unisonVoices);
+    m_unisonVoices.setBounds (18, 42, comboBoxWidth, comboBoxHeight);
 }
 
 OscEditor::Mixer::Mixer()
@@ -134,6 +145,14 @@ OscEditor::Filters::Filters() : m_link1(true), m_link2(true)
     m_link1.setBounds(7, 143, 12, 36);
     addAndMakeVisible(m_link2);
     m_link2.setBounds(m_link1.getBounds().withX(426));
+
+    for (auto* combo : {&m_filterMode[0], &m_filterMode[1], &m_filterRouting, &m_saturationCurve, &m_keyFollowBase})
+        addAndMakeVisible (combo);
+    m_filterMode[0].setBounds (32, 128, comboBoxWidth, comboBoxHeight);
+    m_filterMode[1].setBounds (32, 178, comboBoxWidth, comboBoxHeight);
+    m_filterRouting.setBounds (m_filterMode[0].getBounds().translated (184, 0));
+    m_saturationCurve.setBounds (m_filterMode[1].getBounds().translated (184, 0));
+    m_keyFollowBase.setBounds (m_filterMode[0].getBounds().translated (286, 0));
 }
 
 OscEditor::Filters::Filter::Filter()

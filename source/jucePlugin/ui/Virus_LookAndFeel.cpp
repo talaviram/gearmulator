@@ -55,4 +55,11 @@ namespace Virus
         knob->drawAt(g, x, y, 1.0f);
     }
 
+void LookAndFeel::drawComboBox (Graphics& g, int width, int height, bool isButtonDown,
+                   int buttonX, int buttonY, int buttonW, int buttonH,
+                   ComboBox&)
+{
+    // panels draws combo box... so it's invisible :)
+}
+
 } // namespace Virus

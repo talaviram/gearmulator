@@ -17,12 +17,14 @@ private:
         juce::Slider m_pulseWidth;
         juce::Slider m_semitone;
         juce::Slider m_keyFollow;
+        juce::ComboBox m_waveSelect;
     } m_oscOne;
 
     struct OscTwo : OscOne
     {
         OscTwo();
         juce::Slider m_fmAmount, m_detune, m_envFm, m_envOsc2;
+        juce::ComboBox m_fmMode;
     } m_oscTwo;
 
     struct OscThree : juce::Component
@@ -31,6 +33,7 @@ private:
         juce::Slider m_semitone;
         juce::Slider m_detune;
         juce::Slider m_level;
+        juce::ComboBox m_oscThreeMode;
     } m_oscThree;
 
     struct Unison : juce::Component
@@ -40,6 +43,7 @@ private:
         juce::Slider m_panSpread;
         juce::Slider m_lfoPhase;
         juce::Slider m_phaseInit;
+        juce::ComboBox m_unisonVoices;
     } m_unison;
 
     struct Mixer : juce::Component
@@ -87,6 +91,8 @@ private:
         juce::Slider m_filterBalance;
         Buttons::EnvPol m_envPol[2];
         Buttons::LinkButton m_link1, m_link2;
+        juce::ComboBox m_filterMode[2];
+        juce::ComboBox m_filterRouting, m_saturationCurve, m_keyFollowBase;
     } m_filters;
 
     struct Envelope : juce::Component

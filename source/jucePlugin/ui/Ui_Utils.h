@@ -1,6 +1,7 @@
 #include "Virus_LookAndFeel.h"
 
 constexpr auto knobSize = Virus::LookAndFeel::kKnobSize;
+constexpr auto comboBoxHeight = 17;
 
 static void setupBackground(juce::Component &parent, std::unique_ptr<juce::Drawable> &bg, const void *data,
                             const size_t numBytes)
