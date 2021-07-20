@@ -16,6 +16,8 @@ private:
         juce::Slider m_keytrack;
         juce::Slider m_amount;
         Buttons::HandleButton m_subWaveform;
+        juce::ComboBox m_shape, m_clock;
+        juce::ComboBox m_assignDest;
     };
 
     struct LfoTwoOneShared : LfoBase
@@ -56,7 +58,7 @@ private:
     struct ModMatrix : juce::Component
     {
         ModMatrix();
-        void setupSlot(int slot, std::initializer_list<juce::Point<int>> destsPos);
+        void setupSlot(int slot, std::initializer_list<juce::Point<int>> destsPos, juce::Point<int> sourcePos);
         struct MatrixSlot : juce::Component
         {
             MatrixSlot(int numOfDests);
@@ -66,8 +68,9 @@ private:
                 static constexpr auto kHeight = 62;
                 Dest();
                 juce::Slider m_amount;
+                juce::ComboBox m_dest;
             };
-
+            juce::ComboBox m_source;
             std::vector<std::unique_ptr<Dest>> m_destinations;
         };
 

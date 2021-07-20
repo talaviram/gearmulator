@@ -3,6 +3,7 @@
 #include "Ui_Utils.h"
 
 using namespace juce;
+constexpr auto comboBoxWidth = 98;
 
 LfoEditor::LfoEditor()
 {
@@ -27,6 +28,12 @@ LfoEditor::LfoBase::LfoBase()
         setupRotary(*this, *s);
     addAndMakeVisible(m_subWaveform);
     m_subWaveform.setBounds(8, 123, Buttons::HandleButton::kWidth, Buttons::HandleButton::kHeight);
+
+    addAndMakeVisible(m_shape);
+    m_shape.setBounds(10, 37, 84, comboBoxHeight);
+    addAndMakeVisible(m_clock);
+    m_clock.setBounds(10, 80, 84, comboBoxHeight);
+    addAndMakeVisible(m_assignDest);
 }
 
 LfoEditor::LfoTwoOneShared::LfoTwoOneShared() : m_link(false)
@@ -42,6 +49,7 @@ LfoEditor::LfoTwoOneShared::LfoTwoOneShared() : m_link(false)
     m_envMode.setBounds(66, 122, Buttons::LfoButton::kWidth, Buttons::LfoButton::kHeight);
 
     m_link.setBounds(293, 8, 36, 12);
+    m_assignDest.setBounds(393, 122, comboBoxWidth, comboBoxHeight);
 }
 
 LfoEditor::LfoOne::LfoOne()
@@ -75,6 +83,7 @@ LfoEditor::LfoThree::LfoThree()
     m_fadeIn.setBounds(m_rate.getBounds().translated(knobSize - 6, 0));
     m_keytrack.setBounds(m_rate.getBounds().translated(0, knobSize + 6));
     m_amount.setBounds(307, 22, knobSize, knobSize);
+    m_assignDest.setBounds(393, 45, comboBoxWidth, comboBoxHeight);
 }
 
 LfoEditor::ModMatrix::ModMatrix()
@@ -82,15 +91,16 @@ LfoEditor::ModMatrix::ModMatrix()
     constexpr auto kNumOfSlots = 6;
     for (auto s = 0; s < kNumOfSlots; s++)
         m_modMatrix.push_back(std::make_unique<MatrixSlot>(s == 0 ? 3 : s == 1 ? 2 : 1));
-    setupSlot(0, {{20, 89}, {20, 165}, {20, 241}});
-    setupSlot(1, {{20, 386}, {20, 462}});
-    setupSlot(2, {{255, 89}});
-    setupSlot(3, {{255, 214}});
-    setupSlot(4, {{255, 338}});
-    setupSlot(5, {{255, 462}});
+    setupSlot(0, {{20, 89}, {20, 165}, {20, 241}}, {86, 65});
+    setupSlot(1, {{20, 386}, {20, 462}}, {86, 363});
+    setupSlot(2, {{255, 89}}, {320, 65});
+    setupSlot(3, {{255, 214}}, {320, 190});
+    setupSlot(4, {{255, 338}}, {320, 314});
+    setupSlot(5, {{255, 462}}, {320, 439});
 }
 
-void LfoEditor::ModMatrix::setupSlot(int slotNum, std::initializer_list<juce::Point<int>> destsPos)
+void LfoEditor::ModMatrix::setupSlot(int slotNum, std::initializer_list<juce::Point<int>> destsPos,
+                                     juce::Point<int> sourcePos)
 {
     constexpr auto width = MatrixSlot::Dest::kWidth;
     constexpr auto height = MatrixSlot::Dest::kHeight;
@@ -103,6 +113,8 @@ void LfoEditor::ModMatrix::setupSlot(int slotNum, std::initializer_list<juce::Po
         dest.setBounds(pos.x, pos.y, width, height);
         i++;
     }
+    addAndMakeVisible(slot.m_source);
+    slot.m_source.setBounds(sourcePos.x, sourcePos.y, comboBoxWidth, comboBoxHeight);
 }
 
 LfoEditor::ModMatrix::MatrixSlot::Dest::Dest()
@@ -110,6 +122,8 @@ LfoEditor::ModMatrix::MatrixSlot::Dest::Dest()
     setupRotary(*this, m_amount);
     m_amount.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_BLUE);
     m_amount.setBounds(-6, -4, knobSize, knobSize);
+    addAndMakeVisible(m_dest);
+    m_dest.setBounds(66, 35, comboBoxWidth, comboBoxHeight);
 }
 
 LfoEditor::ModMatrix::MatrixSlot::MatrixSlot(int numOfDests)
