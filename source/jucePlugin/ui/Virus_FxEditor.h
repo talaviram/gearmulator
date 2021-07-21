@@ -13,6 +13,7 @@ private:
     {
         Distortion();
         juce::Slider m_intensity;
+        juce::ComboBox m_curve;
     } m_dist;
 
     struct AnalogBoost : juce::Component
@@ -31,6 +32,7 @@ private:
         juce::Slider m_feedback;
         juce::Slider m_spread;
         juce::Slider m_mix;
+        juce::ComboBox m_stages;
     } m_phaser;
 
     struct Chorus : juce::Component
@@ -41,6 +43,7 @@ private:
         juce::Slider m_feedback;
         juce::Slider m_delay;
         juce::Slider m_mix;
+        juce::ComboBox m_lfoShape;
     } m_chorus;
 
     struct Equalizer : juce::Component
@@ -61,6 +64,7 @@ private:
         juce::Slider m_gain;
         juce::Slider m_attack;
         juce::Slider m_release;
+        juce::ComboBox m_input;
     } m_envFollow;
 
     struct Punch : juce::Component
@@ -77,11 +81,13 @@ private:
         juce::Slider m_depth;
         juce::Slider m_color;
         juce::Slider m_feedback;
+        juce::ComboBox m_fxMode;
 
         struct Sync : juce::Component
         {
             Sync();
             juce::Slider m_mix;
+            juce::ComboBox m_clock, m_lfoShape;
         } m_sync;
     } m_delayReverb;
 
@@ -94,6 +100,7 @@ private:
         juce::Slider m_attack;
         juce::Slider m_release;
         Buttons::LinkButton m_link;
+        juce::ComboBox m_mode;
 
         struct Carrier : juce::Component
         {
@@ -109,6 +116,7 @@ private:
             juce::Slider m_freq_offset;
             juce::Slider m_q_factor;
             juce::Slider m_spread;
+            juce::ComboBox m_modInput;
         } m_modulator;
     } m_vocoder;
 

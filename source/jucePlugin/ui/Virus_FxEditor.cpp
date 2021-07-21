@@ -4,6 +4,8 @@
 
 using namespace juce;
 
+constexpr auto comboBoxWidth = 84;
+
 FxEditor::FxEditor()
 {
     setupBackground(*this, m_background, BinaryData::bg_fx_1018x620_png, BinaryData::bg_fx_1018x620_pngSize);
@@ -33,6 +35,8 @@ FxEditor::Distortion::Distortion()
 {
     setupRotary(*this, m_intensity);
     m_intensity.setBounds(101, 18, knobSize, knobSize);
+    addAndMakeVisible(m_curve);
+    m_curve.setBounds(17, 42, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::AnalogBoost::AnalogBoost()
@@ -55,6 +59,8 @@ FxEditor::Phaser::Phaser()
     m_spread.setBounds(m_feedback.getRight() - 5, y, knobSize, knobSize);
     m_mix.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_RED);
     m_mix.setBounds(m_spread.getRight() - 7, y, knobSize, knobSize);
+    addAndMakeVisible(m_stages);
+    m_stages.setBounds(17, 41, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::Chorus::Chorus()
@@ -68,6 +74,8 @@ FxEditor::Chorus::Chorus()
     m_delay.setBounds(m_feedback.getRight() - 6, y, knobSize, knobSize);
     m_mix.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_RED);
     m_mix.setBounds(m_delay.getRight() - 4, y, knobSize, knobSize);
+    addAndMakeVisible(m_lfoShape);
+    m_lfoShape.setBounds(17, 42, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::Equalizer::Equalizer()
@@ -92,6 +100,8 @@ FxEditor::EnvelopeFollower::EnvelopeFollower()
     m_gain.setBounds(101, y, knobSize, knobSize);
     m_attack.setBounds(m_gain.getRight() - 8, y, knobSize, knobSize);
     m_release.setBounds(m_attack.getRight() - 7, y, knobSize, knobSize);
+    addAndMakeVisible(m_input);
+    m_input.setBounds(17, 37, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::Punch::Punch()
@@ -111,6 +121,9 @@ FxEditor::DelayAndReverb::DelayAndReverb()
     m_color.setBounds(m_depth.getRight() - 3, y, knobSize, knobSize);
     m_feedback.setBounds(m_color.getRight() - 3, y, knobSize, knobSize);
 
+    addAndMakeVisible(m_fxMode);
+    m_fxMode.setBounds(18, 42, comboBoxWidth, comboBoxHeight);
+
     m_sync.setBounds(0, 116 + 2, 481, 116);
     addAndMakeVisible(m_sync);
 }
@@ -120,6 +133,11 @@ FxEditor::DelayAndReverb::Sync::Sync()
     setupRotary(*this, m_mix);
     m_mix.getProperties().set(Virus::LookAndFeel::KnobStyleProp, Virus::LookAndFeel::KnobStyle::GENERIC_RED);
     m_mix.setBounds(376, -2, knobSize, knobSize);
+
+    addAndMakeVisible(m_clock);
+    m_clock.setBounds(18, 22, comboBoxWidth, comboBoxHeight);
+    addAndMakeVisible(m_lfoShape);
+    m_lfoShape.setBounds(m_clock.getBounds().getRight() + 26, 22, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::Vocoder::Vocoder() : m_link(true)
@@ -140,6 +158,8 @@ FxEditor::Vocoder::Vocoder() : m_link(true)
 
     addAndMakeVisible(m_link);
     m_link.setBounds(445, 195, 12, 36);
+    addAndMakeVisible(m_mode);
+    m_mode.setBounds(16, 43, comboBoxWidth, comboBoxHeight);
 }
 
 FxEditor::Vocoder::Carrier::Carrier()
@@ -160,4 +180,6 @@ FxEditor::Vocoder::Modulator::Modulator()
     m_freq_offset.setBounds(107, y, knobSize, knobSize);
     m_q_factor.setBounds(m_freq_offset.getRight() - 8, y, knobSize, knobSize);
     m_spread.setBounds(m_q_factor.getRight() - 7, y, knobSize, knobSize);
+    addAndMakeVisible(m_modInput);
+    m_modInput.setBounds(8, 23, comboBoxWidth, comboBoxHeight);
 }
