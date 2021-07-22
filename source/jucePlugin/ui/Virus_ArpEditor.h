@@ -25,6 +25,8 @@ private:
 
     struct Inputs : juce::Component
     {
+        Inputs();
+        juce::ComboBox m_inputMode, m_inputSelect;
     } m_inputs;
 
     struct Arpeggiator : juce::Component
@@ -37,6 +39,8 @@ private:
 
     struct SoftKnobs : juce::Component
     {
+        SoftKnobs();
+        juce::ComboBox m_funcAs[2], m_name[2];
     } m_softKnobs;
 
     struct PatchSettings : juce::Component
@@ -46,6 +50,8 @@ private:
         juce::Slider m_panning;
         juce::Slider m_outputBalance;
         juce::Slider m_transpose;
+        juce::ComboBox m_keyMode, m_secondaryOutput;
+        juce::ComboBox m_bendUp, m_bendDown, m_bendScale, m_smoothMode, m_cat1, m_cat2;
     } m_patchSettings;
 
     std::unique_ptr<juce::Drawable> m_background;
