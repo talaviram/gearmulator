@@ -36,6 +36,8 @@ VirusEditor::VirusEditor()
         m_oscEditor->setVisible(m_mainButtons.m_oscFilter.getToggleState());
     };
 
+    addAndMakeVisible(m_presetButtons);
+
     setSize (kPanelWidth, kPanelHeight);
 }
 
@@ -54,6 +56,8 @@ void VirusEditor::resized()
 {
     m_background->setBounds (getLocalBounds());
     m_mainButtons.setBounds (394, 106, m_mainButtons.getWidth(), m_mainButtons.getHeight());
+    auto statusArea = Rectangle<int>(395, 36, 578, 60);
+    m_presetButtons.setBounds(statusArea.removeFromRight(188));
     applyToSections([this](Component *s) { s->setTopLeftPosition(338, 133); });
 }
 
@@ -83,4 +87,15 @@ void VirusEditor::MainButtons::setupButton (int i, std::unique_ptr<Drawable>&& b
     btn.setBounds ((i > 1 ? -1 : 0) + i * (kButtonWidth + kMargin), 0, kButtonWidth, kButtonHeight);
     btn.getToggleStateValue().addListener(this);
     addAndMakeVisible (btn);
+}
+
+VirusEditor::PresetButtons::PresetButtons()
+{
+    for (auto *btn : {&m_save, &m_load, &m_presets})
+        addAndMakeVisible(btn);
+    constexpr auto y = 8;
+    constexpr auto w = Buttons::PresetButton::kWidth;
+    m_save.setBounds(28, y, w, Buttons::PresetButton::kHeight);
+    m_load.setBounds(36 + w, y, w, Buttons::PresetButton::kHeight);
+    m_presets.setBounds(43 + w * 2, y, w, Buttons::PresetButton::kHeight);
 }

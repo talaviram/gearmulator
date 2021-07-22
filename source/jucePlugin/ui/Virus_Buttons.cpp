@@ -81,4 +81,15 @@ namespace Buttons
         on->setOriginWithOriginalSize({0, -25});
         setImages(off.get(), nullptr, on.get(), nullptr, on.get());
     }
+
+    Buttons::PresetButton::PresetButton() : DrawableButton("PresetButton", DrawableButton::ImageRaw)
+    {
+        auto normal =
+            Drawable::createFromImageData(BinaryData::presets_btn_43_15_png, BinaryData::presets_btn_43_15_pngSize);
+        auto pressed = normal->createCopy();
+        pressed->setOriginWithOriginalSize({0, -15});
+        setColour(DrawableButton::ColourIds::backgroundColourId, Colours::transparentBlack);
+        setColour(DrawableButton::ColourIds::backgroundOnColourId, Colours::transparentBlack);
+        setImages(normal.get(), nullptr, pressed.get(), nullptr, pressed.get(), nullptr, normal.get());
+    }
 }; // namespace Buttons

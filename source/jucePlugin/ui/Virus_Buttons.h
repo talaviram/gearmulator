@@ -43,4 +43,12 @@ namespace Buttons
         static constexpr auto kHeight = 25;
         SyncButton();
     };
+
+    class PresetButton : public juce::DrawableButton
+    {
+    public:
+        static constexpr auto kWidth = 43;
+        static constexpr auto kHeight = 15;
+        PresetButton();
+    };
 } // namespace Buttons

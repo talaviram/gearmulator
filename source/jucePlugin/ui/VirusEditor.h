@@ -1,6 +1,7 @@
 #pragma once
 
 #include <juce_gui_extra/juce_gui_extra.h>
+#include "Virus_Buttons.h"
 #include "Virus_LookAndFeel.h"
 
 class OscEditor;
@@ -29,6 +30,12 @@ private:
         static constexpr auto kButtonHeight = 26;
         static constexpr auto kGroupId = 0x3FBBA;
     } m_mainButtons;
+
+    struct PresetButtons : juce::Component
+    {
+        PresetButtons();
+        Buttons::PresetButton m_save, m_load, m_presets;
+    } m_presetButtons;
 
     void applyToSections(std::function<void(juce::Component *)>);
 
