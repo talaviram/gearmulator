@@ -59,6 +59,22 @@ ArpEditor::Arpeggiator::Arpeggiator()
     m_globalTempo.setBounds(341, y, knobSize, knobSize);
     m_noteLength.setBounds(m_globalTempo.getRight() - 8, y, knobSize, knobSize);
     m_noteSwing.setBounds(m_noteLength.getRight() - 7, y, knobSize, knobSize);
+
+    for (auto *c : {&m_mode, &m_pattern, &m_octaveRange, &m_resolution})
+        addAndMakeVisible(c);
+
+    constexpr auto comboBoxWidth = 90;
+    constexpr auto comboBoxHeight = 15;
+    constexpr auto comboTopY = 35;
+
+    m_mode.setBounds(39, 40, 52, 38);
+    m_pattern.setBounds(114, comboTopY, comboBoxWidth, comboBoxHeight);
+    m_resolution.setBounds(220, comboTopY, comboBoxWidth, comboBoxHeight);
+    m_octaveRange.setBounds(m_pattern.getBounds().translated(0, comboBoxHeight + 18));
+
+    m_arpHold.setButtonText("On");
+    addAndMakeVisible(m_arpHold);
+    m_arpHold.setBounds(220, m_octaveRange.getY(), 32, comboBoxHeight);
 }
 
 ArpEditor::SoftKnobs::SoftKnobs()

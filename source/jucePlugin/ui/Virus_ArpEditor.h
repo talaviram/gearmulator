@@ -35,6 +35,8 @@ private:
         juce::Slider m_globalTempo;
         juce::Slider m_noteLength;
         juce::Slider m_noteSwing;
+        juce::ComboBox m_mode, m_pattern, m_octaveRange, m_resolution;
+        juce::TextButton m_arpHold;
     } m_arp;
 
     struct SoftKnobs : juce::Component
